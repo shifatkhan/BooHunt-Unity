@@ -26,7 +26,8 @@ public class EnemyMovement : MonoBehaviour
     private float speed = 1.5f;
     private float initialSpeed = 1.5f;
 
-    public Direction moveDir = Direction.RIGHT; // Initial Direction of the enemy.
+    [SerializeField]
+    private Direction moveDir = Direction.RIGHT; // Initial Direction of the enemy.
     private Vector3 movement = new Vector3(); // Movement direction.
 
     // Vars for random movement AI
@@ -89,6 +90,11 @@ public class EnemyMovement : MonoBehaviour
         movingRandomly = false;
         period = Random.Range(0.5f, 3);
         ResetDirection();
+    }
+
+    public void SetDirection(Direction newDir)
+    {
+        this.moveDir = newDir;
     }
 
     /// <summary>

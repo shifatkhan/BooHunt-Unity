@@ -7,6 +7,7 @@ TagManager:
   - Ghost
   - Cursor
   - Witch
+  - Game Manager
   layers:
   - Default
   - TransparentFX
