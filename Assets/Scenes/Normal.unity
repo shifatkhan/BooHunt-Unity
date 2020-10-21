@@ -539,7 +539,6 @@ MonoBehaviour:
   speed: 1.5
   moveDir: 3
   movement: {x: 0, y: 0, z: 0}
-  movingRandomly: 0
   randomMovementDuration: 1
 --- !u!1 &2101331265
 GameObject:

@@ -17,7 +17,8 @@ public enum Direction
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 10;
+    private float speed = 1.5f;
+    private float initialSpeed = 1.5f;
 
     public Direction moveDir = Direction.RIGHT; // Initial Direction of the enemy.
     public Vector3 movement = new Vector3(); // Movement direction.
@@ -26,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     private float nextActionTime = 0.0f;
     private float period = 1.0f;
     private bool movingRandomly = false;
-    private float randomMovementDuration = 1f;
+    public float randomMovementDuration = 1f;
 
     private Animator animator;
 
@@ -34,7 +35,9 @@ public class EnemyMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
+        initialSpeed = speed;
         ResetDirection();
+        randomMovementDuration = GetRandomMovementDuration(speed);
     }
 
     void Update()
@@ -97,31 +100,33 @@ public class EnemyMovement : MonoBehaviour
 
     public void GenerateRandomMovement()
     {
+        // Get a new random direction.
         int x = Random.Range(-1, 2);
         int y = Random.Range(-1, 2);
-        print($"Rand: ({x},{y})");
-        if(moveDir == Direction.UP && y < 0)
+
+        // Make backwards movements shorter.
+        if((moveDir == Direction.UP && y < 0) || (moveDir == Direction.DOWN && y > 0) ||
+            (moveDir == Direction.RIGHT && x < 0) || (moveDir == Direction.LEFT && x > 0))
         {
-            randomMovementDuration = GetRandomDuration(speed * 0.8f);
-        }
-        else if (moveDir == Direction.DOWN && y > 0)
-        {
-            randomMovementDuration = GetRandomDuration(speed * 0.8f);
-        }
-        else if (moveDir == Direction.RIGHT && x < 0)
-        {
-            randomMovementDuration = GetRandomDuration(speed * 0.8f);
-        }
-        else if (moveDir == Direction.LEFT && x > 0)
-        {
-            randomMovementDuration = GetRandomDuration(speed * 0.8f);
+            randomMovementDuration = GetRandomMovementDuration(speed * 2f);
         }
 
         movement = new Vector3(x, y);
     }
 
-    public float GetRandomDuration(float seed)
+    public float GetRandomMovementDuration(float seed)
     {
-        return Random.Range(0.5f, seed / 5 < 0.5 ? 1 : seed / 5);
+        return Random.Range(0.3f, 1.5f / seed < 0.2f ? 1 : 1.5f / seed);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        if(speed <= 0)
+        {
+            print("Error: Speed can't be negative!");
+            return;
+        }
+
+        this.speed = speed;
     }
 }
