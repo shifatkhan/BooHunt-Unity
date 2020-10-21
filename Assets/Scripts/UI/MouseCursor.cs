@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles custom mouse cursor animations and clicks.
+/// We can define whether we accept holding the mouse button
+/// or not.
+/// 
+/// @author ShifatKhan
+/// </summary>
 public class MouseCursor : MonoBehaviour
 {
     // Enable hold the mouse button or not.
     public bool canHold = false;
+    protected Vector2 cursorPosition;
 
-    private Animator animator;
+    protected Animator animator;
 
     void Start()
     {
@@ -19,27 +27,42 @@ public class MouseCursor : MonoBehaviour
 
     void Update()
     {
-        Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = cursorPosition;
 
         if(canHold)
         {
-            if (Input.GetButton("Fire"))
+            if (Input.GetButton("Left Click"))
             {
-                animator.SetBool("Fire", true);
+                HandleLeftClick();
             }
         }
         else
         {
-            if (Input.GetButtonDown("Fire"))
+            if (Input.GetButtonDown("Left Click"))
             {
-                animator.SetBool("Fire", true);
+                HandleLeftClickDown();
             }
         }
     }
 
-    public void FinishClickAnimation()
+    protected virtual void HandleLeftClick()
     {
-        animator.SetBool("Fire", false);
+        animator.SetBool("Left Click", true);
+    }
+
+    protected virtual void HandleLeftClickDown()
+    {
+        animator.SetBool("Left Click", true);
+    }
+
+    public void PlayLeftClickSound()
+    {
+        // TODO: Add cursor click sound
+    }
+
+    public void FinishLeftClickAnimation()
+    {
+        animator.SetBool("Left Click", false);
     }
 }

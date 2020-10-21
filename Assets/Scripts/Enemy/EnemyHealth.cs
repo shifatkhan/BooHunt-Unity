@@ -18,12 +18,20 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentHealth <= 0)
+        {
+            // TODO: Die
+            Destroy(gameObject);
+        }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ReceiveDamage(int damage)
     {
-        print($"Triggered other: {collision.gameObject.tag}");
+        currentHealth -= damage;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }

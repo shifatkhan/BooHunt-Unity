@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ghost
   - Cursor
+  - Witch
   layers:
   - Default
   - TransparentFX
