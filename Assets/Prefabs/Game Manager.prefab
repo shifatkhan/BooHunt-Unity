@@ -46,3 +46,4 @@ MonoBehaviour:
   totalTime: 20
   difficulty: 1
   score: 0
+  timeText: {fileID: 0}

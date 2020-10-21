@@ -19,8 +19,9 @@ public class MouseCrossair : MouseCursor
 
     private GameManager gm;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         gm = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
     }
 

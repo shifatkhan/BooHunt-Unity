@@ -160,7 +160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037695151669301795}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7037695153591160750}
@@ -430,7 +430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037695151941448106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7037695153591160750}
@@ -610,7 +610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037695152994941383}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7037695153591160750}
@@ -700,7 +700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037695153451613502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7037695153591160750}
@@ -791,7 +791,7 @@ Transform:
   m_GameObject: {fileID: 7037695153591160751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8125, y: 0.825, z: 1}
   m_Children:
   - {fileID: 7037695153451613889}
   - {fileID: 7037695153529629057}
@@ -826,9 +826,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d159b04d1715264589be043f2b1396f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 0
   ghostPrefab: {fileID: 3375948375636110011, guid: 8f436ac1fabc9964888b04dde6d82724, type: 3}
   witchPrefab: {fileID: 1220445499209885915, guid: f0f4ccdb06507974596ee2cfcd589e67, type: 3}
+  ghostSpawnRate: 2
+  minWitchSpawnFrequency: 2
+  maxWitchSpawnFrequency: 4
 --- !u!1 &8895274274483467679
 GameObject:
   m_ObjectHideFlags: 0

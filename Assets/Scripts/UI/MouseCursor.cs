@@ -17,7 +17,7 @@ public class MouseCursor : MonoBehaviour
 
     protected Animator animator;
 
-    void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
 
