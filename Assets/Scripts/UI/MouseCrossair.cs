@@ -17,6 +17,13 @@ public class MouseCrossair : MouseCursor
     [SerializeField]
     private LayerMask targetLayer;
 
+    private GameManager gm;
+
+    private void Start()
+    {
+        gm = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+    }
+
     protected override void HandleLeftClick()
     {
         base.HandleLeftClick();
@@ -35,35 +42,58 @@ public class MouseCrossair : MouseCursor
 
         int numberOfGhosts = 0; // To Check for bonus points.
         
-        foreach (Collider2D col in objectsHit)
+        // Check if the player missed.
+        if(objectsHit.Length <= 0 && !gm.IsInSpecialMode())
         {
-            if (col.CompareTag("Ghost"))
-            {
-                numberOfGhosts++;
-                col.GetComponent<EnemyHealth>().ReceiveDamage(1);
-
-                if (col == null || col.GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
-                {
-                    // TODO: Get points
-                    print("Ghost shot!");
-                }
-            }
-            else if (col.CompareTag("Witch"))
-            {
-                col.GetComponent<EnemyHealth>().ReceiveDamage(1);
-
-                if(col == null || col.GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
-                {
-                    // TODO: Get points - Witch gives key?
-                    print("Witch Shot!");
-                }
-            }
+            gm.score--;
         }
-
-        if(numberOfGhosts >= 2)
+        else
         {
-            // TODO: Bonus 5 points.
-            print("BONUS");
+            foreach (Collider2D col in objectsHit)
+            {
+                if (col.CompareTag("Ghost"))
+                {
+                    numberOfGhosts++;
+                    col.GetComponent<EnemyHealth>().ReceiveDamage(1);
+
+                    if (col == null || col.GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
+                    {
+                        if (gm.IsInSpecialMode())
+                        {
+                            gm.score += 1;
+                        }
+                        else
+                        {
+                            gm.score += 3;
+                        }
+                    }
+                }
+                else if (col.CompareTag("Witch"))
+                {
+                    col.GetComponent<EnemyHealth>().ReceiveDamage(1);
+
+                    if (col == null || col.GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
+                    {
+                        gm.score += 3;
+                        // TODO: Add special key.
+                    }
+                }
+            }
+
+            if (numberOfGhosts >= 2)
+            {
+                gm.score += 5;
+
+                foreach (Collider2D col in objectsHit)
+                {
+                    if (col.CompareTag("Ghost"))
+                    {
+                        // TODO: Spawn +5 sprite
+                        // col.GetComponent<Emote>().ShowPlus5();
+                        break;
+                    }
+                }
+            }
         }
     }
 

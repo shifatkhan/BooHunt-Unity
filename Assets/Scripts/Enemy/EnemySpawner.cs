@@ -10,6 +10,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private bool enabledForSpecialMode = true;
 
+    private GameManager gm;
+
+    private void Start()
+    {
+        gm = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+    }
+
     public void SetDirectionToSpawn(Direction newDir)
     {
         this.directionToSpawn = newDir;
@@ -21,8 +28,10 @@ public class EnemySpawner : MonoBehaviour
         EnemyMovement enemySpawned = spawned.GetComponent<EnemyMovement>();
 
         enemySpawned.SetDirection(directionToSpawn);
-        // TODO: Change speed according to level.
-        //enemySpawned.SetSpeed();
+
+        // Change speed according to level.
+        int difficulty = gm.GetDifficulty();
+        enemySpawned.SetSpeed(difficulty > 1 ? enemySpawned.GetSpeed() : enemySpawned.GetSpeed() + difficulty);
     }
 
     public void SetEnabledForSpecialMode(bool enable)

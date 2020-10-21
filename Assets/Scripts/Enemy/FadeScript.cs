@@ -5,7 +5,6 @@ using UnityEngine;
 /// <summary>
 /// Allows us to fade in a game object's sprite.
 /// 
-/// TODO: Add fade out?
 /// </summary>
 public class FadeScript : MonoBehaviour
 {

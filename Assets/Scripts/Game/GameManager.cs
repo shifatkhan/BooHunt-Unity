@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private int difficulty = 1; // 1, 2, 3 = Easy, Medium, Hard
     private float difficultyChangeRate = 6.6f;
 
+    public int score = 0;
+    private bool inSpecialMode = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +31,19 @@ public class GameManager : MonoBehaviour
             difficulty++;
         }
 
-        timeRemaining -= Time.time;
+        timeRemaining -= Time.deltaTime;
 
         if(timeRemaining <= 0)
         {
             // TODO: Game over!
         }
+
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        print($"Time remaining: {timeRemaining}");
     }
 
     public float GetTotalTime()
@@ -47,8 +56,13 @@ public class GameManager : MonoBehaviour
         return timeRemaining;
     }
 
-    public float GetDifficulty()
+    public int GetDifficulty()
     {
         return difficulty;
+    }
+
+    public bool IsInSpecialMode()
+    {
+        return inSpecialMode;
     }
 }

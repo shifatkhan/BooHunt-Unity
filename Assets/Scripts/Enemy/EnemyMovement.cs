@@ -155,6 +155,11 @@ public class EnemyMovement : MonoBehaviour
         return Random.Range(0.3f, 1.5f / seed < 0.2f ? 1 : 1.5f / seed);
     }
 
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
     public void SetSpeed(float speed)
     {
         if(speed <= 0)
