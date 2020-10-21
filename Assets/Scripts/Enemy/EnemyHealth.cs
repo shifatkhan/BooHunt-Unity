@@ -9,9 +9,13 @@ public class EnemyHealth : MonoBehaviour
     private int totalHealth = 1;
     private int currentHealth = 1;
 
+    private HitStop hitStop;
+
     // Start is called before the first frame update
     void Start()
     {
+        hitStop = GetComponent<HitStop>();
+
         currentHealth = totalHealth;
     }
 
@@ -27,6 +31,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
+        if(hitStop != null)
+            hitStop.StartHitStop();
+
         currentHealth -= damage;
     }
 
