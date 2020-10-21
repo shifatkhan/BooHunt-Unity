@@ -14,26 +14,36 @@ public enum Direction
     RIGHT
 }
 
+/// <summary>
+/// This script takes care of enemy AI (movement). The gist of it is that 
+/// it will have a general direction (enum Direction) but once in awhile it will
+/// move in other directions (referred to as a Random Movement)
+/// </summary>
 public class EnemyMovement : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField]
     private float speed = 1.5f;
     private float initialSpeed = 1.5f;
 
     public Direction moveDir = Direction.RIGHT; // Initial Direction of the enemy.
-    public Vector3 movement = new Vector3(); // Movement direction.
+    private Vector3 movement = new Vector3(); // Movement direction.
 
     // Vars for random movement AI
     private float nextActionTime = 0.0f;
     private float period = 1.0f;
     private bool movingRandomly = false;
-    public float randomMovementDuration = 1f;
+    private float randomMovementDuration = 1f; // Duration of the random movement.
 
+    private FadeScript fadeIn;
     private Animator animator;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        fadeIn = GetComponent<FadeScript>();
+        if (fadeIn != null)
+            fadeIn.StartFadeIn();
 
         initialSpeed = speed;
         ResetDirection();
@@ -42,6 +52,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        // Check if it's time to perform a random movement.
         if (Time.time > nextActionTime && !movingRandomly)
         {
             nextActionTime += period;
@@ -58,6 +69,11 @@ public class EnemyMovement : MonoBehaviour
         transform.position = transform.position + movement * speed * Time.deltaTime;
     }
 
+    /// <summary>
+    /// Move at a random direction for a certain period of time.
+    /// </summary>
+    /// <param name="duration">Duration of this random movement.</param>
+    /// <returns></returns>
     IEnumerator MoveRandomly(float duration)
     {
         float timePassed = 0;
@@ -65,7 +81,6 @@ public class EnemyMovement : MonoBehaviour
 
         while (timePassed < duration)
         {
-            // Code to go left here
             timePassed += Time.deltaTime;
 
             yield return null;
@@ -76,6 +91,9 @@ public class EnemyMovement : MonoBehaviour
         ResetDirection();
     }
 
+    /// <summary>
+    /// Sets the movement Vector3 to the enum Direction.
+    /// </summary>
     public void ResetDirection()
     {
         switch (moveDir)
@@ -98,6 +116,11 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Assigns a random movement direction.
+    /// If the movement is 'backwards', we assign it a shorter duration
+    /// because we don't want the enemy to stay too long on the screen.
+    /// </summary>
     public void GenerateRandomMovement()
     {
         // Get a new random direction.
@@ -114,6 +137,13 @@ public class EnemyMovement : MonoBehaviour
         movement = new Vector3(x, y);
     }
 
+    /// <summary>
+    /// Generates a random movement Duration based on a given seed.
+    /// The bigger the seed, the lower the movement duration (because
+    /// we use Speed as our seed).
+    /// </summary>
+    /// <param name="seed"></param>
+    /// <returns></returns>
     public float GetRandomMovementDuration(float seed)
     {
         return Random.Range(0.3f, 1.5f / seed < 0.2f ? 1 : 1.5f / seed);

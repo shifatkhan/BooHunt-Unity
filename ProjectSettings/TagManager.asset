@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ghost
+  - Cursor
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -43,4 +45,10 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3224980061
+    locked: 0
+  - name: Enemy
+    uniqueID: 187268803
+    locked: 0
+  - name: UI
+    uniqueID: 490496783
     locked: 0
