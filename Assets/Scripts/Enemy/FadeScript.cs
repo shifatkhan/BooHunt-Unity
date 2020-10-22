@@ -29,12 +29,12 @@ public class FadeScript : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        for (float i = 0.05f; i <= 1; i += 0.05f)
+        for (float i = 0.1f; i <= 1; i += 0.1f)
         {
             Color spriteColor = spriteRenderer.material.color;
             spriteColor.a = i;
             spriteRenderer.material.color = spriteColor;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
         }
     }
 }

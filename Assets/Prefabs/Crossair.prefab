@@ -72,6 +72,11 @@ MonoBehaviour:
     m_Bits: 256
   candyPrefab: {fileID: 3934116579518384440, guid: 22bb7c0895f955e44a774938ce01fb56, type: 3}
   vampire: {fileID: 0}
+  bulletHole: {fileID: 1617873125794427360, guid: 26edfc8d2a329c74bae1916b013d5e3f, type: 3}
+  bonusPoint: {fileID: 2713218479637191356, guid: 2e9403b4c90740d4789d1b41317409bf, type: 3}
+  hit: {fileID: 1124100890465587897, guid: 1c87be665785c164c8902461209413e6, type: 3}
+  hitOnePoint: {fileID: 7530767085004726587, guid: e9941db8716e5eb45802ce6ac8569aaa, type: 3}
+  miss: {fileID: 7814329373215853995, guid: 4bab87e510cc9de44bd98c2c9966b7ff, type: 3}
 --- !u!1 &427070717114417848
 GameObject:
   m_ObjectHideFlags: 0

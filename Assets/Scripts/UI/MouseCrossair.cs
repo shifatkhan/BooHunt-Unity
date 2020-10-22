@@ -23,6 +23,11 @@ public class MouseCrossair : MouseCursor
     [Header("Prefabs")]
     public GameObject candyPrefab;
     public Laugh vampire;
+    public GameObject bulletHole;
+    public GameObject bonusPoint;
+    public GameObject hit;
+    public GameObject hitOnePoint;
+    public GameObject miss;
 
     protected override void Start()
     {
@@ -33,12 +38,14 @@ public class MouseCrossair : MouseCursor
     protected override void HandleLeftClick()
     {
         base.HandleLeftClick();
-        ShootEnemy();
+        if(!gm.gameIsOver)
+            ShootEnemy();
     }
     protected override void HandleLeftClickDown()
     {
         base.HandleLeftClick();
-        ShootEnemy();
+        if (!gm.gameIsOver)
+            ShootEnemy();
     }
 
     private void ShootEnemy()
@@ -64,6 +71,9 @@ public class MouseCrossair : MouseCursor
 
             if(!vampire.laughing)
                 vampire.StartLaugh();
+
+            Instantiate(bulletHole, cursorPosition, Quaternion.identity);
+            Instantiate(miss, cursorPosition, Quaternion.identity);
         }
         else
         {
@@ -79,10 +89,12 @@ public class MouseCrossair : MouseCursor
                         if (gm.IsInSpecialMode())
                         {
                             gm.score += 1;
+                            Instantiate(hitOnePoint, cursorPosition, Quaternion.identity);
                         }
                         else
                         {
                             gm.score += 3;
+                            Instantiate(hit, cursorPosition, Quaternion.identity);
                         }
                     }
                 }
@@ -109,7 +121,7 @@ public class MouseCrossair : MouseCursor
             {
                 gm.score += 5;
 
-                // TODO: Spawn +5 sprite
+                Instantiate(bonusPoint, cursorPosition, Quaternion.identity);
             }
         }
     }

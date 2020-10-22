@@ -11,6 +11,8 @@ public class EnemyHealth : MonoBehaviour
 
     private HitStop hitStop;
 
+    public GameObject deathFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(currentHealth <= 0)
         {
-            // TODO: Die
+            Instantiate(deathFX, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 490496783
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 81ee12f1ba2e13d48b5575bf7eba8607, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -153,8 +153,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 490496783
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2106191431552087565, guid: 3de49ba7401c04d4a88c1e81642e20a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -198,5 +198,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7afc0aa2748d64d90db400a9ba7f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClockImage: {fileID: 0}
+  candyBox: {fileID: 0}
   transitionSpeed: 2
