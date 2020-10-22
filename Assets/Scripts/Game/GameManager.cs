@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         timeRemaining = totalTime;
         difficultyChangeRate = totalTime / 3; // We will change difficulty every 1/3 of the way.
         gameIsOver = false;
+        difficulty = 1;
 
         if (timeText == null)
             timeText = GameObject.Find("TimeText").GetComponent<Text>();
