@@ -37,6 +37,9 @@ public class EnemyHealth : MonoBehaviour
             hitStop.StartHitStop();
 
         currentHealth -= damage;
+
+        GetComponent<PlaySfx>().Play(0);
+        GetComponent<PlaySfx>().SetPitch(0, 0.8f);
     }
 
     public int GetCurrentHealth()

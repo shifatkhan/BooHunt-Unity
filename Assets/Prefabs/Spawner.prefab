@@ -830,7 +830,7 @@ MonoBehaviour:
   witchPrefab: {fileID: 1220445499209885915, guid: f0f4ccdb06507974596ee2cfcd589e67, type: 3}
   ghostSpawnRate: 1.5
   minWitchSpawnFrequency: 3
-  maxWitchSpawnFrequency: 5
+  maxWitchSpawnFrequency: 6
 --- !u!1 &8895274274483467679
 GameObject:
   m_ObjectHideFlags: 0

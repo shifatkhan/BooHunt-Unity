@@ -36,6 +36,8 @@ public class GameOver : MonoBehaviour
 
         // Show OS cursor.
         Cursor.visible = true;
+
+        MusicPlayer.SetVolume(MusicPlayer.initialVolume / 2);
     }
 
     public void TryAgainClicked()

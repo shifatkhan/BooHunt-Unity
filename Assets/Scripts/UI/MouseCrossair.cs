@@ -141,6 +141,7 @@ public class MouseCrossair : MouseCursor
                             Vector3 worldPos = new Vector3(cursorPosition.x, cursorPosition.y, 0);
                             gm.candy = Instantiate(candyPrefab, cursorPosition, Quaternion.identity);
                             gm.candyAcquired = true;
+                            CandySound.PlayCandyGet();
                         }
                     }
                 }

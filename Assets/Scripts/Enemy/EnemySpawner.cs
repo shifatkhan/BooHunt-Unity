@@ -32,6 +32,11 @@ public class EnemySpawner : MonoBehaviour
         // Change speed according to level.
         int difficulty = gm.GetDifficulty();
         enemySpawned.SetSpeed(difficulty > 1 ? enemySpawned.GetSpeed() + (difficulty-1) * 0.75f : enemySpawned.GetSpeed());
+
+        // Play Spawn sfx
+        PlaySfx sfx = spawned.GetComponent<PlaySfx>();
+        sfx.SetPitch(0, Random.Range(0.85f, 1.15f));
+        sfx.Play(0);
     }
 
     public void SetEnabledForSpecialMode(bool enable)

@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public GameObject candy;
     public bool gameIsOver { get; private set; }
     public GameObject[] vfx;
+
+    private Coroutine specialCo;
+
     [Header("UI")]
     public GameOver gameOver;
 
@@ -38,6 +41,9 @@ public class GameManager : MonoBehaviour
         difficultyChangeRate = totalTime / 3; // We will change difficulty every 1/3 of the way.
         gameIsOver = false;
         difficulty = 1;
+        MusicPlayer.SetVolume(MusicPlayer.initialVolume);
+
+        // Remove side vfx for Frenzy mode.
         foreach (GameObject go in vfx)
         {
             go.SetActive(false);
@@ -81,15 +87,24 @@ public class GameManager : MonoBehaviour
 
     private void StartSpecialMode()
     {
+        // Allow to reset Special mode if it's activated again
+        // while already in special mode.
+        if(specialCo != null)
+        {
+            StopCoroutine(specialCo);
+        }
+
         inSpecialMode = true;
         candyAcquired = false;
         candy.GetComponent<Candy>().Die();
         slider.StartSlider();
+        CandySound.PlayCandyUse();
+        MusicPlayer.SetSpeed(1.2f);
         foreach (GameObject go in vfx)
         {
             go.SetActive(true);
         }
-        StartCoroutine(StopSpecialMode());
+        specialCo = StartCoroutine(StopSpecialMode());
     }
 
     IEnumerator StopSpecialMode()
@@ -101,6 +116,7 @@ public class GameManager : MonoBehaviour
             go.SetActive(false);
         }
         inSpecialMode = false;
+        MusicPlayer.SetSpeed(1);
     }
 
     private void UpdateUI()
