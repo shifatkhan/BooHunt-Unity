@@ -52,3 +52,4 @@ MonoBehaviour:
   gameOver: {fileID: 0}
   timeText: {fileID: 0}
   scoreText: {fileID: 0}
+  slider: {fileID: 0}

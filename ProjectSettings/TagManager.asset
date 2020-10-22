@@ -9,6 +9,7 @@ TagManager:
   - Witch
   - Game Manager
   - Candy Box
+  - Special Slider
   layers:
   - Default
   - TransparentFX

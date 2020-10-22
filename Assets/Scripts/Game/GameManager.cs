@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     public Text timeText;
     public Text scoreText;
+    public SpecialModeSlider slider;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
             timeText = GameObject.Find("TimeText").GetComponent<Text>();
         if (scoreText == null)
             scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        if (slider == null)
+            slider = GameObject.Find("SliderContainer").GetComponent<SpecialModeSlider>();
     }
 
     // Update is called once per frame
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
         inSpecialMode = true;
         candyAcquired = false;
         candy.GetComponent<Candy>().Die();
+        slider.StartSlider();
         StartCoroutine(StopSpecialMode());
     }
 
@@ -109,5 +113,10 @@ public class GameManager : MonoBehaviour
     public bool IsInSpecialMode()
     {
         return inSpecialMode;
+    }
+
+    public float GetSpecialModeDuration()
+    {
+        return specialModeDuration;
     }
 }

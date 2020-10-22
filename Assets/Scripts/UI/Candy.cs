@@ -20,7 +20,7 @@ public class Candy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         newCandyPos = Camera.main.ScreenToWorldPoint(candyBox.transform.position);
-        newCandyPos = new Vector3(newCandyPos.x, newCandyPos.y, 0);
+        newCandyPos = new Vector3(candyBox.transform.position.x, candyBox.transform.position.y, 0);
     }
 
     // Update is called once per frame
