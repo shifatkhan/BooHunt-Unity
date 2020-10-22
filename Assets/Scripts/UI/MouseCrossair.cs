@@ -29,10 +29,24 @@ public class MouseCrossair : MouseCursor
     public GameObject hitOnePoint;
     public GameObject miss;
 
+    public float bulletSpawnRate = 0.2f;
+    private float nextBulletSpawnTime = 0;
+    private bool canSpawnBullet = false;
+
     protected override void Start()
     {
         base.Start();
         gm = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (Time.time > nextBulletSpawnTime)
+        {
+            nextBulletSpawnTime += bulletSpawnRate;
+            canSpawnBullet = true;
+        }
     }
 
     protected override void HandleLeftClick()
@@ -65,18 +79,33 @@ public class MouseCrossair : MouseCursor
         int numberOfGhosts = 0; // To Check for bonus points.
         
         // Check if the player missed.
-        if(objectsHit.Length <= 0 && !gm.IsInSpecialMode())
+        if(objectsHit.Length <= 0)
         {
-            gm.score--;
+            if (canSpawnBullet)
+            {
+                Instantiate(bulletHole, cursorPosition, Quaternion.identity);
+                CrosshairAudio.PlayShoot(true, 1);
+                canSpawnBullet = false;
+            }
 
-            if(!vampire.laughing)
-                vampire.StartLaugh();
+            if (!gm.IsInSpecialMode())
+            {
+                gm.score--;
 
-            Instantiate(bulletHole, cursorPosition, Quaternion.identity);
-            Instantiate(miss, cursorPosition, Quaternion.identity);
+                if (!vampire.laughing)
+                    vampire.StartLaugh();
+
+                Instantiate(miss, cursorPosition, Quaternion.identity);
+            }
         }
         else
         {
+            if (canSpawnBullet)
+            {
+                CrosshairAudio.PlayShoot(true, 1);
+                canSpawnBullet = false;
+            }
+
             foreach (Collider2D col in objectsHit)
             {
                 if (col.CompareTag("Ghost"))

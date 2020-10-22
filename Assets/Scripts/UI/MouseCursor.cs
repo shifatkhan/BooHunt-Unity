@@ -27,7 +27,7 @@ public class MouseCursor : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = cursorPosition;
