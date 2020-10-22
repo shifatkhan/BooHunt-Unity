@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8072711071624441966}
   - component: {fileID: -1508643718890317536}
   - component: {fileID: -6633621268180871592}
+  - component: {fileID: 6622812636018089131}
   - component: {fileID: 3300597473814456568}
   m_Layer: 8
   m_Name: Witch
@@ -182,6 +183,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   moveDir: 3
+--- !u!114 &6622812636018089131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220445499209885915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e87bccdecf8a9409d8ee3fa21b4fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1220445499209885913}
 --- !u!114 &3300597473814456568
 MonoBehaviour:
   m_ObjectHideFlags: 0

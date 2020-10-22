@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Candy : MonoBehaviour
 {
+    [Header("UI")]
     public GameObject candyBox;
     private Vector3 newCandyPos;
 
     public float transitionSpeed = 1f;
+
+    [Header("Prompt")]
+    public float promptTime = 5f;
+    private float startTime = 0f;
+    private FadeScript fade;
+    public static bool shown = false;
 
     private Animator animator;
 
@@ -21,6 +29,18 @@ public class Candy : MonoBehaviour
 
         newCandyPos = Camera.main.ScreenToWorldPoint(candyBox.transform.position);
         newCandyPos = new Vector3(candyBox.transform.position.x, candyBox.transform.position.y, 0);
+
+        startTime = Time.time;
+        fade = GetComponentInChildren<FadeScript>();
+    }
+
+    void Update()
+    {
+        if(!shown && Time.time > startTime + promptTime)
+        {
+            fade.StartFadeIn();
+            shown = true;
+        }
     }
 
     // Update is called once per frame
