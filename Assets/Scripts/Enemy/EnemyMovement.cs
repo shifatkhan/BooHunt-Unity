@@ -45,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
         fadeIn = GetComponent<FadeScript>();
         if (fadeIn != null)
             fadeIn.StartFadeIn();
-
+        nextActionTime = Time.time;
         initialSpeed = speed;
         ResetDirection();
         randomMovementDuration = GetRandomMovementDuration(speed);

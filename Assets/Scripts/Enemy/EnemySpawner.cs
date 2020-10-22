@@ -7,8 +7,6 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawner attributes")]
     [SerializeField]
     private Direction directionToSpawn = Direction.RIGHT;
-    [SerializeField]
-    private bool enabledForSpecialMode = true;
 
     private GameManager gm;
 
@@ -37,10 +35,5 @@ public class EnemySpawner : MonoBehaviour
         PlaySfx sfx = spawned.GetComponent<PlaySfx>();
         sfx.SetPitch(0, Random.Range(0.85f, 1.15f));
         sfx.Play(0);
-    }
-
-    public void SetEnabledForSpecialMode(bool enable)
-    {
-        enabledForSpecialMode = enable;
     }
 }

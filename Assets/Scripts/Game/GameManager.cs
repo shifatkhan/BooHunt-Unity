@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     private float totalTime = 20f;
     private float timeRemaining = 20f;
 
-    [SerializeField]
     private int difficulty = 1; // 1, 2, 3 = Easy, Medium, Hard
+    private float difficultyTime = 0.0f;
     private float difficultyChangeRate = 6.6f;
 
     public int score = 0;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         timeRemaining = totalTime;
         difficultyChangeRate = totalTime / 3; // We will change difficulty every 1/3 of the way.
         gameIsOver = false;
-        difficulty = 1;
+        difficultyTime = Time.time + difficultyChangeRate;
         MusicPlayer.SetVolume(MusicPlayer.initialVolume);
 
         // Remove side vfx for Frenzy mode.
@@ -65,9 +65,10 @@ public class GameManager : MonoBehaviour
             UpdateUI();
 
             // Check if it's time to increase difficulty.
-            if (Time.time > difficulty * difficultyChangeRate)
+            if (Time.time > difficultyTime)
             {
                 difficulty++;
+                difficultyTime += difficultyChangeRate;
             }
 
             timeRemaining -= Time.deltaTime;

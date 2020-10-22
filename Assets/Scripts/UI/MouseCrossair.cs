@@ -37,6 +37,7 @@ public class MouseCrossair : MouseCursor
     {
         base.Start();
         gm = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        nextBulletSpawnTime = Time.time;
     }
 
     protected override void Update()
@@ -142,6 +143,7 @@ public class MouseCrossair : MouseCursor
                             gm.candy = Instantiate(candyPrefab, cursorPosition, Quaternion.identity);
                             gm.candyAcquired = true;
                             CandySound.PlayCandyGet();
+                            Instantiate(hit, cursorPosition, Quaternion.identity);
                         }
                     }
                 }

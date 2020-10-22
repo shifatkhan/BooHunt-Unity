@@ -16,8 +16,8 @@ public class EnemySpawnManager : MonoBehaviour
     [Header("Enemy Spawn frequencies")]
     [SerializeField]
     private float ghostSpawnRate = 2.0f;
-    private float ghostSpawnTime = 0.0f;
-    private float initialGhostSpawnRate = 2.0f;
+    private float ghostSpawnTime = 0.5f;
+    private float initialGhostSpawnRate = 0;
 
     private float witchSpawnRate = 2.0f;
     private float witchSpawnTime = 0.0f;
@@ -36,6 +36,9 @@ public class EnemySpawnManager : MonoBehaviour
 
         // Spawn witch 2 - 5 times.
         witchSpawnRate = gm.GetTotalTime() / (int)Random.Range(minWitchSpawnFrequency, maxWitchSpawnFrequency+1);
+
+        ghostSpawnTime = Time.time;
+        witchSpawnTime = Time.time;
         witchSpawnTime += witchSpawnRate; // So the witch doesn't spawn right away.
 
         initialGhostSpawnRate = ghostSpawnRate;
@@ -47,7 +50,7 @@ public class EnemySpawnManager : MonoBehaviour
         if (Time.time > ghostSpawnTime)
         {
             ghostSpawnTime += ghostSpawnRate;
-
+            print("SPAWNED GHOST");
             SpawnGhost();
         }
 
@@ -55,7 +58,7 @@ public class EnemySpawnManager : MonoBehaviour
         if (Time.time > witchSpawnTime)
         {
             witchSpawnTime += witchSpawnRate;
-
+            print("SPAWNED witch");
             SpawnWitch();
         }
 

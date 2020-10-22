@@ -23,6 +23,8 @@ public class MouseCursor : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
+        nextFireTime = Time.time;
+
         // Hide OS cursor.
         Cursor.visible = false;
     }
