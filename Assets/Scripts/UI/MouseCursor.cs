@@ -13,6 +13,8 @@ public class MouseCursor : MonoBehaviour
 {
     // Enable hold the mouse button or not.
     public bool canHold = false;
+    public float holdFireRate = 0.2f;
+    private float nextFireTime = 0;
     protected Vector2 cursorPosition;
 
     protected Animator animator;
@@ -32,9 +34,14 @@ public class MouseCursor : MonoBehaviour
 
         if(canHold)
         {
-            if (Input.GetButton("Left Click"))
+            if (Time.time > nextFireTime)
             {
-                HandleLeftClick();
+                nextFireTime += holdFireRate;
+
+                if (Input.GetButton("Left Click"))
+                {
+                    HandleLeftClick();
+                }
             }
         }
         else

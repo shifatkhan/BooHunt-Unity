@@ -11,6 +11,7 @@ using UnityEngine;
 /// </summary>
 public class MouseCrossair : MouseCursor
 {
+    [Header("Crosshair vars")]
     [SerializeField]
     private float crossairRadius = 1f;
 
@@ -18,6 +19,10 @@ public class MouseCrossair : MouseCursor
     private LayerMask targetLayer;
 
     private GameManager gm;
+
+    [Header("Prefabs")]
+    public GameObject candyPrefab;
+    public Laugh vampire;
 
     protected override void Start()
     {
@@ -38,6 +43,15 @@ public class MouseCrossair : MouseCursor
 
     private void ShootEnemy()
     {
+        if (gm.IsInSpecialMode())
+        {
+            canHold = true;
+        }
+        else
+        {
+            canHold = false;
+        }
+
         // Check if we hit any enemies.
         Collider2D[] objectsHit = Physics2D.OverlapCircleAll(cursorPosition, crossairRadius, targetLayer);
 
@@ -47,6 +61,9 @@ public class MouseCrossair : MouseCursor
         if(objectsHit.Length <= 0 && !gm.IsInSpecialMode())
         {
             gm.score--;
+
+            if(!vampire.laughing)
+                vampire.StartLaugh();
         }
         else
         {
@@ -76,7 +93,14 @@ public class MouseCrossair : MouseCursor
                     if (col == null || col.GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
                     {
                         gm.score += 3;
-                        // TODO: Add special key.
+
+                        if(!gm.candyAcquired)
+                        {
+                            // Drop candy for special mode.
+                            Vector3 worldPos = new Vector3(cursorPosition.x, cursorPosition.y, 0);
+                            gm.candy = Instantiate(candyPrefab, cursorPosition, Quaternion.identity);
+                            gm.candyAcquired = true;
+                        }
                     }
                 }
             }
@@ -85,15 +109,7 @@ public class MouseCrossair : MouseCursor
             {
                 gm.score += 5;
 
-                foreach (Collider2D col in objectsHit)
-                {
-                    if (col.CompareTag("Ghost"))
-                    {
-                        // TODO: Spawn +5 sprite
-                        // col.GetComponent<Emote>().ShowPlus5();
-                        break;
-                    }
-                }
+                // TODO: Spawn +5 sprite
             }
         }
     }

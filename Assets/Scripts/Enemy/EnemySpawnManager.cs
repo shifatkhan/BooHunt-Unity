@@ -17,6 +17,7 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField]
     private float ghostSpawnRate = 2.0f;
     private float ghostSpawnTime = 0.0f;
+    private float initialGhostSpawnRate = 2.0f;
 
     private float witchSpawnRate = 2.0f;
     private float witchSpawnTime = 0.0f;
@@ -36,6 +37,8 @@ public class EnemySpawnManager : MonoBehaviour
         // Spawn witch 2 - 5 times.
         witchSpawnRate = gm.GetTotalTime() / (int)Random.Range(minWitchSpawnFrequency, maxWitchSpawnFrequency+1);
         witchSpawnTime += witchSpawnRate; // So the witch doesn't spawn right away.
+
+        initialGhostSpawnRate = ghostSpawnRate;
     }
 
     void Update()
@@ -48,14 +51,21 @@ public class EnemySpawnManager : MonoBehaviour
             SpawnGhost();
         }
 
-        // TODO: Ghost spawn rate decreases in special mode
-
         // Check if we should spawn witch.
         if (Time.time > witchSpawnTime)
         {
             witchSpawnTime += witchSpawnRate;
 
             SpawnWitch();
+        }
+
+        if (gm.IsInSpecialMode())
+        {
+            ghostSpawnRate = initialGhostSpawnRate / 8;
+        }
+        else
+        {
+            ghostSpawnRate = initialGhostSpawnRate;
         }
 
     }

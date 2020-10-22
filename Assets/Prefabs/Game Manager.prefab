@@ -46,4 +46,9 @@ MonoBehaviour:
   totalTime: 20
   difficulty: 1
   score: 0
+  candyAcquired: 0
+  specialModeDuration: 6
+  candy: {fileID: 0}
+  gameOver: {fileID: 0}
   timeText: {fileID: 0}
+  scoreText: {fileID: 0}

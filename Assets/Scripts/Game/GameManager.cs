@@ -14,7 +14,13 @@ public class GameManager : MonoBehaviour
     private float difficultyChangeRate = 6.6f;
 
     public int score = 0;
+    public bool candyAcquired = false; // This enables the Special game mode.
     private bool inSpecialMode = false;
+    [SerializeField]
+    private float specialModeDuration = 3f;
+    public GameObject candy;
+    public bool gameIsOver { get; private set; }
+    public GameOver gameOver;
 
     public Text timeText;
     public Text scoreText;
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         timeRemaining = totalTime;
         difficultyChangeRate = totalTime / 3; // We will change difficulty every 1/3 of the way.
+        gameIsOver = false;
 
         if (timeText == null)
             timeText = GameObject.Find("TimeText").GetComponent<Text>();
@@ -34,20 +41,44 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateUI();
-
-        // Check if it's time to increase difficulty.
-        if (Time.time > difficulty * difficultyChangeRate)
+        if (!gameIsOver)
         {
-            difficulty++;
-        }
+            UpdateUI();
 
-        timeRemaining -= Time.deltaTime;
+            // Check if it's time to increase difficulty.
+            if (Time.time > difficulty * difficultyChangeRate)
+            {
+                difficulty++;
+            }
 
-        if(timeRemaining <= 0)
-        {
-            // TODO: Game over!
+            timeRemaining -= Time.deltaTime;
+
+            if (Input.GetButtonDown("Submit") && candyAcquired)
+            {
+                StartSpecialMode();
+            }
+
+            if (timeRemaining <= 0)
+            {
+                gameIsOver = true;
+                gameOver.StartGameOver(score);
+            }
         }
+    }
+
+    private void StartSpecialMode()
+    {
+        inSpecialMode = true;
+        candyAcquired = false;
+        Destroy(candy);
+        StartCoroutine(StopSpecialMode());
+    }
+
+    IEnumerator StopSpecialMode()
+    {
+        yield return new WaitForSeconds(specialModeDuration);
+
+        inSpecialMode = false;
     }
 
     private void UpdateUI()

@@ -8,6 +8,7 @@ TagManager:
   - Cursor
   - Witch
   - Game Manager
+  - Candy Box
   layers:
   - Default
   - TransparentFX
