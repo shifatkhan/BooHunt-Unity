@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Difficulty")]
     [SerializeField]
     private float totalTime = 20f;
     private float timeRemaining = 20f;
@@ -16,10 +17,13 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public bool candyAcquired = false; // This enables the Special game mode.
     private bool inSpecialMode = false;
+
+    [Header("Special mode")]
     [SerializeField]
     private float specialModeDuration = 3f;
     public GameObject candy;
     public bool gameIsOver { get; private set; }
+    [Header("UI")]
     public GameOver gameOver;
 
     public Text timeText;
@@ -70,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         inSpecialMode = true;
         candyAcquired = false;
-        Destroy(candy);
+        candy.GetComponent<Candy>().Die();
         StartCoroutine(StopSpecialMode());
     }
 

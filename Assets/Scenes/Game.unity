@@ -448,10 +448,6 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1839137593}
-    - target: {fileID: 6413811683211728838, guid: cbed41d7805eacc48816055ebb9f7c03, type: 3}
-      propertyPath: specialModeDuration
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6413811683211728839, guid: cbed41d7805eacc48816055ebb9f7c03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
