@@ -43,12 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07498a71a9a43c2489ca3e35b58057d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 20
+  totalTime: 40
   difficulty: 1
   score: 0
   candyAcquired: 0
-  specialModeDuration: 3
+  specialModeDuration: 4
   candy: {fileID: 0}
+  vfx:
+  - {fileID: 0}
+  - {fileID: 0}
   gameOver: {fileID: 0}
   timeText: {fileID: 0}
   scoreText: {fileID: 0}

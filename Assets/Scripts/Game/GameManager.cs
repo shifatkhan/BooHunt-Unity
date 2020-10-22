@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private float specialModeDuration = 3f;
     public GameObject candy;
     public bool gameIsOver { get; private set; }
+    public GameObject[] vfx;
     [Header("UI")]
     public GameOver gameOver;
 
@@ -37,6 +38,10 @@ public class GameManager : MonoBehaviour
         difficultyChangeRate = totalTime / 3; // We will change difficulty every 1/3 of the way.
         gameIsOver = false;
         difficulty = 1;
+        foreach (GameObject go in vfx)
+        {
+            go.SetActive(false);
+        }
 
         if (timeText == null)
             timeText = GameObject.Find("TimeText").GetComponent<Text>();
@@ -80,6 +85,10 @@ public class GameManager : MonoBehaviour
         candyAcquired = false;
         candy.GetComponent<Candy>().Die();
         slider.StartSlider();
+        foreach (GameObject go in vfx)
+        {
+            go.SetActive(true);
+        }
         StartCoroutine(StopSpecialMode());
     }
 
@@ -87,6 +96,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(specialModeDuration);
 
+        foreach (GameObject go in vfx)
+        {
+            go.SetActive(false);
+        }
         inSpecialMode = false;
     }
 
