@@ -355,6 +355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vampire Laugh
       objectReference: {fileID: 0}
+    - target: {fileID: 835396810670665525, guid: 059a27b089716014cbced5f7dbd68ba5, type: 3}
+      propertyPath: m_SortingOrder
+      value: -9
+      objectReference: {fileID: 0}
     - target: {fileID: 835396810670665526, guid: 059a27b089716014cbced5f7dbd68ba5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -545,6 +549,10 @@ PrefabInstance:
     - target: {fileID: 427070715822362200, guid: 7f3de14fdccfe54478437b173aa48b21, type: 3}
       propertyPath: m_Name
       value: Crossair
+      objectReference: {fileID: 0}
+    - target: {fileID: 427070715822362200, guid: 7f3de14fdccfe54478437b173aa48b21, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 427070715822362201, guid: 7f3de14fdccfe54478437b173aa48b21, type: 3}
       propertyPath: m_LocalPosition.x

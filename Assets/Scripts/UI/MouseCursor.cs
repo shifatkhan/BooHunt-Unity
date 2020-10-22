@@ -65,7 +65,7 @@ public class MouseCursor : MonoBehaviour
 
     public void PlayLeftClickSound()
     {
-        // TODO: Add cursor click sound
+
     }
 
     public void FinishLeftClickAnimation()
