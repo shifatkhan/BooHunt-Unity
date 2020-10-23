@@ -26,14 +26,14 @@ public class PauseScript : MonoBehaviour
         }
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
         pauseScreen.SetActive(true);
         isPaused = true;
         Time.timeScale = 0f;
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         pauseScreen.SetActive(false);
         isPaused = false;
