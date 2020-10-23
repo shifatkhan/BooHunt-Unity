@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
             timeRemaining -= Time.deltaTime;
 
-            if (Input.GetButtonDown("Submit") && candyAcquired)
+            if (!PauseScript.isPaused && Input.GetButtonDown("Submit") && candyAcquired)
             {
                 StartSpecialMode();
             }

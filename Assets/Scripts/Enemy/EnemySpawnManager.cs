@@ -29,6 +29,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     private GameManager gm;
 
+    private bool specialActivated = false;
+
     void Start()
     {
         spawners = GetComponentsInChildren<EnemySpawner>();
@@ -50,7 +52,6 @@ public class EnemySpawnManager : MonoBehaviour
         if (Time.time > ghostSpawnTime)
         {
             ghostSpawnTime += ghostSpawnRate;
-            print("SPAWNED GHOST");
             SpawnGhost();
         }
 
@@ -58,17 +59,23 @@ public class EnemySpawnManager : MonoBehaviour
         if (Time.time > witchSpawnTime)
         {
             witchSpawnTime += witchSpawnRate;
-            print("SPAWNED witch");
             SpawnWitch();
         }
 
         if (gm.IsInSpecialMode())
         {
+            if (!specialActivated)
+            {
+                ghostSpawnTime = Time.time;
+                specialActivated = true;
+            }
+
             ghostSpawnRate = initialGhostSpawnRate / 8;
         }
         else
         {
             ghostSpawnRate = initialGhostSpawnRate;
+            specialActivated = false;
         }
 
     }

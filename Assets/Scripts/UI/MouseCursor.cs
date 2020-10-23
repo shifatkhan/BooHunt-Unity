@@ -40,7 +40,7 @@ public class MouseCursor : MonoBehaviour
             {
                 nextFireTime += holdFireRate;
 
-                if (Input.GetButton("Left Click"))
+                if (!PauseScript.isPaused && Input.GetButton("Left Click"))
                 {
                     HandleLeftClick();
                 }
@@ -48,7 +48,7 @@ public class MouseCursor : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Left Click"))
+            if (!PauseScript.isPaused && Input.GetButtonDown("Left Click"))
             {
                 HandleLeftClickDown();
             }
